@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="formVal.css" rel="stylesheet" type="text/css"> 
+        <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
+    </head>
+    <body>
+
+    <form action="formValMsg1.html" onsubmit=" return validate() ">
+       <label class="formDiv">
+           <div class="formHeading">First Name :</div>
+           <input type="text" class="formInput firstName" placeholder="First Name ..." required></input>
+           <p></p>
+           <div class="formHeading">Last Name :</div>
+           <input type="text" class="formInput lastName" placeholder="Last Name ..." required></input>
+           <p></p>
+           <div class="formHeading">Date of Birth :</div>
+           <input type="text" class="formInput birthDate" placeholder="ex : 10/01/1998" required></input>
+           <p></p>
+           <div class="formHeading">E-mail Adress :</div>
+           <input type="text" class="formInput email" placeholder="ex : myname@email.com" required></input>
+           <p></p>
+           <div class="formHeading">Adress :</div>
+           <input type="text" class="formInput mail" placeholder="Adress ..." required></input>
+           <p></p>
+           <div class="formHeading">Password :</div>
+           <input type="password" class="formInput pass" placeholder="Password ..." required></input>
+           <p></p>
+           <div class="formHeading">Comments :</div>
+           <textarea type="text" class="formInput" placeholder="Comments ..." required></textarea>
+           <button type="submit" class="formInput">Send</button>
+           <button type="reset" class="formInput">Reset</button>
+       </label>
+    </form>
+    </body>
+    <script>       
+      function validate()
+      {       
+        let birth = document.querySelector('.birthDate').value
+        if (birth.trim()==="") 
+        { alert('Check your birth date !');return false } else  true;
+        if (birth.trim()[2]!=="/")
+        {alert('Check your birth date !');return false} else true;
+        if (birth.trim()[5]!=="/") 
+        {alert('Check your birth date !');return false} else true;
+        if (Number.parseInt(birth[0]+birth[1])>31) 
+        {alert('Check your birth date !');return false } else true
+        if (Number.parseInt(birth[3]+birth[4])>12)  
+        {alert('Check your birth date !');return false} else true
+        if ((Number.parseInt(birth[6]+birth[7]+birth[8]+birth[9])>2019)||(Number.parseInt(birth[6]+birth[7]+birth[8]+birth[9])>2019)) 
+        {alert('Check your birth date !');return false} else true
+             
+        let email = document.querySelector('.email').value      
+        if (email.includes(" ")||!(email.includes("@"))||(!email.includes(".")))
+        {
+            alert('Check your email Adress !')
+            return false
+        }
+        else true
+        
+        let pass=document.querySelector('.pass').value
+        if (pass.length<8)
+        {
+            alert('Your password must contain more than 8 characters')
+            return false
+        }
+       let test1 = false
+       let test2 = false
+        for(let x of pass)
+        {
+            if ('AZERTYUIOPMLKJHGFDSQWXCVBN'.includes(x))
+            {
+                test1 = true
+            }
+            if ('0123456789'.includes(x))
+            {
+                test2 = true
+            }
+        }
+        if (!(test1&&test2)){
+            alert ('Your password must be a combination of numbers , characters and at least one capital letter !')
+            return false
+        }
+        else true
+      }
+    </script>
+</html>
